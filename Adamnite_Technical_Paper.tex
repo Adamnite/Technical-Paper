@@ -1,0 +1,352 @@
+% Template for Affective Computing and Intelligent Interaction (ACII)
+%
+% Modified 2022-03-15 : Desmond Ong (desmond.c.ong@gmail.com)
+%.      -- update for ACII2022, added section for Ethical Impact Statement
+%
+
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{cancel}
+\usepackage{xspace}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{subfig}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[a4paper,width=175mm,top=18mm,bottom=22mm,includeheadfoot]{geometry}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{verbatim}
+\usepackage{caption}
+\usepackage{natbib}
+\usepackage{float}
+\usepackage{pdflscape}
+\usepackage{mathtools}
+\usepackage[usenames,dvipsnames]{xcolor}
+
+\usepackage{tabu} %requires array.
+
+%This should be the last package before \input{Version.tex}
+\PassOptionsToPackage{hyphens}{url}\usepackage{hyperref}
+% "hyperref loads the url package internally. Use \PassOptionsToPackage{hyphens}{url}\usepackage{hyperref} to pass the option to the url package when it is loaded by hyperref. This avoids any package option clashes." Source: <https://tex.stackexchange.com/questions/3033/forcing-linebreaks-in-url/3034#comment44478_3034>.
+% Note also this: "If the \PassOptionsToPackage{hyphens}{url} approach does not work, maybe it's "because you're trying to load the url package with a specific option, but it's being loaded by one of your packages before that with a different set of options. Try loading the url package earlier than the package that requires it. If it's loaded by the document class, try using \RequirePackage[hyphens]{url} before the document class." Source: <https://tex.stackexchange.com/questions/3033/forcing-linebreaks-in-url/3034#comment555944_3034>.
+% For more information on using the hyperref package, refer to e.g. https://en.wikibooks.org/w/index.php?title=LaTeX/Hyperlinks&stable=0#Hyperlink_and_Hypertarget.
+
+\makeatletter
+ \newcommand{\linkdest}[1]{\Hy@raisedlink{\hypertarget{#1}{}}}
+\makeatother
+\usepackage{seqsplit}
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+\begin{document}
+
+\title{Adamnite: A Dependable and Efficient Distributed Ledger Technology Development Platform\\
+}
+\author{
+    Archie Chaudhury\\
+    Founder, Adamnite and Co-Founder, Adamnite Labs\\
+    archchaudhury@adamnite.org
+}
+
+\maketitle
+
+\begin{abstract}
+Programmable Distributed Ledger Technologies have shown their potential with the recent growth of decentralized applications being governed by smart contracts. Platforms such as Ethereum, Solana, Cardano and more have established a standard model for permissionless computer systems operating in a decentralized manner. We formally define this paradigm as any programmable operating system with decentralized applications governed by immutable multi-party smart contracts recorded on a distributed ledger.
+
+Adamnite is an implementation of the aforementioned paradigm with features built specifically for ease of use and security. Additionally, it provides a framework for effective decentralized application development, allowing for the creation of complex multiparty smart contracts that are simultaneously powerful and safe. In this work, we produce a low-level discussion of Adamnite's design, its current implementation, and its long-term goals.
+\end{abstract}
+
+
+\section{Introduction}
+
+Distributed Ledger Technologies are increasingly being viewed as a suitable platform for conducting financial transactions, issuing contractual rights, and developing applications. The latter has especially grown in popularity, with decentralized state-transition machines such as Ethereum essentially serving as global computers on which users can interact with interconnected and decentralized internet-based applications. While initially only used to provide and record financial instruments, these platforms have evolved to allow developers to create complex smart contracts that have come together to form the backbone of an ubiquitous decentralized application ecosystem. Use-cases such as Non Fungible Tokens, tokenized governance systems, and ledger-based loan mechanisms have metamorphized the manner in which users interact and share information with each other.
+
+Adamnite is a protocol that aims to provide developers with a suitable and efficient platform for building such decentralized software. Like Ethereum and other multi-party smart contract development platforms, it can be modeled as a decentralized state-transition machine. However, Adamnite surpasses this common archetype through by making available both an intuitive modular programming language and efficient distribute ledger to developers, among other features, that allows to them to pursue use-cases and applications for the smart contracts paradigm that currently remain relatively uninvestigated.
+
+\subsection{Reasoning}
+
+The main directive of the Adamnite protocol is to increase the usability of decentralized internet-based software applications by the general public, and thus encourage the adoption of distributed technology as whole. Current implementations of such applications are not only cumbersome to use, but more importantly, lack fundamental security features. Exploits on multi-party smart contracts are quite common, and due to both the legal ambiguity surrounding the space and the natural anonymity of the parties interacting with such contracts, are often difficult to rectify. This leads to a significant lack of trust of in distributed ledger applications by the general public, government legislature, and private businesses. Furthermore, the difficulty of architecting secure applications also significantly alienates  otherwise capable developers, and acting as a significant roadblock in the development of decentralized applications. Through the creation of a modular and intuitive programming environment, Adamnite can serve to increase the adoption of decentralized technology.
+
+Adamnite's proposed ecosystem will be at once similar and broadly different than other multi-party smart contract systems. While the Adamnite protocol fits the paradigm of an immutable distributed ledger supported by a state machine, its actual machine-level implementation is much more similar to that of a high-level general purpose programming language such as Python or Java. By doing so, we hope to bridge the current gap between traditional development and distributed ledger innovation , and encourage developers from the former to build applications on the latter. Finally, Adamnite hopes to increase the amount of native, decentralized, and usable applications on the internet.
+
+
+\subsection{Prior Work}
+Adamnite was initially defined formally in a white-paper \cite{chaudhury2021Adamnite} published in late 2021, which is where the core principle of a straightforward and secure programming environment combined with a traditional cryptographic distributed ledger was first espoused.
+
+
+The first distributed ledger that could simultaneously process financial transactions secured by cryptography and be Byzantine Fault Tolerant was proposed by the anonymous developer Satoshi Nakamoto \cite{nakamoto2008Bitcoin} in late 2008. Bitcoin was also the first implementation of the decentralized consensus mechanism commonly known as Nakamoto Consensus, which combines both hash-based Proof of Work with the dominance of the longest chain of timestamped blocks to serve as a computational proof. This was the first public implementation of the class of Distributed Ledger Technologies commonly known as a blockchain. Bitcoin was preceded by Hashcash \cite{back2002hashcash}, among others, and was followed by other currency-based systems such as Litecoin.
+
+Bitcoin was preceded by other peer to peer currency systems such as B-Money, initially proposed by Dai. \cite{dai1998bmoney} While early iterations of such currency systems were never officially taken live, they were influential to the development of modern-day cryptocurrencies. For example, an early version of both distributed consensus and reputation-based punishment can be seen Dai's design for B-Money. These concepts will eventually be used in both Nakamoto Consensus and the contemporary slashing mechanisms seen in Proof of Stake (POS) currencies.
+
+Buterin \cite{buterin2013Ethereum} proposed the first work that utilized an immutable distributed ledger with a state machine combined with a Turing Complete programming language in late 2013 for the Ethereum project, while Wood \cite{wood2014EthereumYellow} provided a low-level technical specification  of the same protocol in early 2014. Wood's work, which has been termed a "Yellow Paper", greatly influenced the layout of this paper. Ethereum was also the first such system to have a high-level script-like programming language (Solidity) that was accessible to all, and set a standard for distributed state systems and decentralized application development. A majority of decentralized applications today are built using Solidity, and are either defined on Ethereum or a distributed ledger dependent on Ethereum. Ethereum's virtual machine design has also become a standard, with many alternative protocols pursuing or leveraging compatability with the EVM, or the Ethereum Virtual Machine.
+
+
+Ethereum was followed by other multiparty smart contract platforms incorporated with distributed ledgers: most notably, Solana, Algorand, Cosmos, and others have each proposed new protocols with unique advantages. For example, Solana, initially described by Yakovenko \cite {Yakovenko}, proposes a distributed ledger and global state machine utilizing a universal timestamps to create a unique and performant consensus mechanism. On the other hand, Algorand, invented by
+Micalli \cite{micalli2017Algroand}, proposes an alternative consensus mechanism relying on cryptographic randomness to generate a secure and stable distributed ledger. This allows Algorand to be performant while retaining a significant amount of decentralization, and decreases the likelihood of a Distributed Denial of Service attack rendering the blockchain offline.
+
+A common high-level smart contract scripting language was first extensively described by Szabo \cite{szaboContract}, who saw it as an algorithmic representation of a legally valid contract between two parties. These smart contracts were defined in a formal "mini" high-level language, and could be applied to financial, medical, and legal agreements. Simplicity was also key: contracts are meant to be readable by individuals coming from backgrounds such as law and medicine. Adamnite is meant to be a general distributed ledger and state platform which can process operations specified in such a high-level and universal contractual language.
+
+
+\section{The Distributed Ledger}
+Fundamentally, Adamnite is a distributed and decentralized network: it depends on the active participation of multiple geographically sparse parties to function as intended. To achieve this, Adamnite implements a distributed ledger that stores individual accounts, contracts, the current state, and other data. This data is manipulated and read through transactions that are continuously recorded on the distributed ledger. These transactions are often value exchanged between two parties who are either interacting directly or through a contract that is stored on the ledger. Transactions are approved through a decentralized consensus protocol, with each transaction being recorded via a timestamp and combined into data structures commonly known as a block. These blocks are then linked together via a cryptographic reference that points to the previous block.  The consensus protocol can be assumed to be Byzantine Fault Tolerant; that is, we can reasonably expect that the failure of a single node or validator will not result in the failure of the entire network. We now move to a formal discussion of Adamnite's Distributed Ledger.
+
+\subsection{The Blockchain}
+Like other generalized multi-party smart contract development platforms, Adamnite can be defined as a state machine that calculates a new "canonical" state based upon the execution of some transactions applied to the previous state. This canonical state can store any sort of decentralized information, including but not limited to identities, on-chain assets, or rules governing the operation of some decentralized entity. While there are certain low level optimizations that have been made to Adamnite's underlying storage mechanism that make it more efficient, the protocol can still be formally defined as a state-transistion mechanism that operates through transactions:
+\begin{equation}
+\linkdest{Upsilon_state_transition}\linkdest{Omega}\boldsymbol{\sigma}_{t+1} \equiv \Upsilon(\boldsymbol{\sigma}_{t}, t)
+\end{equation}
+This is essentially the same as Ethereum's transaction-based state transition model, where external transactions define changes to the overall state of the distributed ledger. \boldsymbol{\omega} represents the future canonical state, and $\Upsilon$ represents the typical state transition function. As with Ethereum, any amount of computation and storage can be carried out, with the only restriction being the economics of such an endeavor. In that sense, the Adamnite network can be seen as an implementation of a Turing Complete state machine.
+
+Like other implementations of such systems, transactions on Adamnite are collected into blocks, which are then coaleased together into a chain through secure cryptographic hashes. Thus, Adamnite can be defined as a blockchain, which is broader class of Distributed Ledger Technologies that aggregate blocks of data through cryptographic means.  Blocks themselves contain a header which stores cryptographic references to the previous block, all the transactions in the current block, and a reference to the current state of the ledger. Note that the entire state or list of transactions is not stored; rather, a compact cryptographic proof that points to a storage mechanism such as a Merkle Tree is leveraged as the reference. Blocks themselves are proposed (and validated)  by democratically elected witnesses who have an incentive to act in the best interest of the overall ecosystem by means of an implicit social contract: the ecosystem benefits from having dedicated and honest nodes validating the distributed ledger, while the elected nodes are rewarded with units of the underlying digital currency as a reward for their work. Not only does this currency carry with it some level of monetary value, it is also used as an indicator of an individual participant's voting power, thus giving elected nodes who act honestly (and are thus rewarded) more power in future elections. This process is an implementation of the Delegated Proof of Stake consensus mechanism, and is discussed in more detail later in section 3. The actual blocks on Adamnite's distributed ledger defined as follows:
+\begin{eqnarray}
+\boldsymbol{\sigma}_{t+1} & \equiv & \hyperlink{Pi}{\Pi}(\boldsymbol{\sigma}_{t}, B) \\
+B & \equiv & (\Omega(B-1), t, \Delta,..), (T_0, T_1,..),
+(\omega),..)
+\end{eqnarray}
+
+Here, $\Pi$ simply represents a state-
+transition within the block to account for the block reward, while $B$ represents the block itself, which includes a block header, a list of all the transactions within the block, a list of the witnesses who had been elected for the particular block, and other low-level data. The block header contains $\Omega(B-1)$, which represents the hash of the previous block in the ledger (for now, we can consider $\Omega$ to be a secure black-box hash function that is both one-way and collision resistant), the timestamp at which the block was proposed, the signature of block proposer, an identifier, and other information related to both the storage of the individual block and the state of the entire ledger. While this definition is similar to that of Ethereum's, slight nuances are made for Adamnite's unique needs.
+
+\subsection{Digital Currency}
+Like with other decentralized consensus-based protocols, there is a need for an underlying currency that serves to add economic functionality to the system, reward validators as discussed earlier, and establish a method of exchange for the usage of the underlying computing system to host contracts or internet applications. Adamnite's underlying digital currency is called Nite, and is used as both an incentive to elected validators and as an internal medium of exchange. Like Ethereum, and its intrinsic currency Ether, Nite has several subdenominations named after prominent contributors to cryptography, digital assets, and more:
+\begin{enumerate}
+    \item {Micali}: $1$
+    \item {Sunny}:  $10^{10}$
+    \item {Vitalik}: $10^{12}$
+    \item {Nite}: $10^{14}$
+
+\end{enumerate}
+
+In Adamnite, Nite is more than just a digital currency for processing payments. It is also a key for being able to participate in consensus: any individual with a valid Adamnite account will be able to use their Nite to vote for validators. Nite will also be the gateway to the entire class of decentralized internet based applications that exist on the Adamnite platform, with users being able to use their Nite in various ways to interact with these applications. In that sense, Nite can be thought of as an implementation of a digital key that enables access to the entirety of the Adamnite network.
+
+\section{Data Storage and Protocol Consensus}
+A blockchain or smart contracts platform can be described more generally as a decentralized database storing various active and inactive data. In most blockchains, the underlying data comprises of accounts, transactions, autonomous programs, and low level storage data. In order to both validate on-chain data and ensure that the ledger is kept updated with correct information without having to rely on a centralized mint or authority, there needs to be a procedure that allows for certain participants or parties within the network to both update and validate the information that is computed on the ledger. In most other implementations of currency-based blockchains, a measure of some form of contribution or dedication to the network is used to decide which node (we use the terms participant, account, and node interchangeably throughout this work. They all define a party within the protocol that has the ability to interact with others) has the ability to take such actions. Popular implementations such as Bitcoin and Ethereum measure the amount of raw computing power that a particular node has dedicated to solving a sufficiently hard problem in order to decide which blocks are added to the ledger in a process that is frequently termed Proof of Work (PoW), while other platforms use a variation of the amount of the native digital currency that an account to decide how blocks are added to the underlying ledger. Both processes involving adding some degree of economic backing to the network, thus giving it long-term validity. They also double as issuance, as accounts are rewarded for their contribution through the native currency of the platform.
+
+In Adamnite, as previously discussed, a ring of delegates are chosen by the broader network to both propose and approve blocks of transactions. This process can be defined as a variation of Delegated Proof of Stake (DPOS), a common consensus mechanism originally invented by Larmier \cite{Larmier2014DPOS} in July of 2014. Delegated Proof of Stake itself can be seen as a common implementation of a democratic peer to peer network protocol, or a democratic-crypto system. As both block validation and block proposal are, to a degree, concentrated, Adamnite takes additional measures to protect the network from common attacks that plague other stake-based consensus systems.
+
+\subsection {Formal Description of Accounts and Account Storage}
+ Account data itself is stored in a binary merkle tree for simplicity, and should be stored as key-values within the trie itself. The account state, formally defined as $\alpha$, has the following parameters:
+ 
+ \begin{description}
+\item[\textbf{nonce:}]\hspace{3}  A scalar representing the amount of transactions that the account has sent. For autonomous accounts, these include application-call transactions (transactions that are made in the context of a message call to the underlying code) Formally defined as $\alpha_n$
+\item[\textbf{balance:}]\hspace{10}  An unsigned integer representing the balance, in Micalli, owned by the account. Formally defined as $\alpha_b$.
+\item[\textbf{Rewards:}]\hspace{10}  The total amount, in Micalli, received by the account from participating in the staking process. Formally defined as as $\alpha_r$.
+\item[\textbf{Data:}] The 512-bit hash of the underlying data stored by the account; it is a mapping to the underlying binary merkle trie that actually stores the data for the account. Formally defined as $\alpha_d$
+\item[\textbf{ADVM Code}]\hspace{30}: A hash of the virtual machine code for the account. The underlying code is executed in the event of an application call to the account; in the case of a manual account, this field is empty. Formally defined as $\alpha_c$ 
+\end{description}
+
+It can be assumed that a standard serialization process allows the account state data to be stored in the underlying binary Merkle Trie, and that values can be retrieved by accessing the key-value pairs. 
+
+
+
+
+
+ 
+
+
+
+\subsection {Transactions}
+ Transactions ($t$) are cryptographically signed messages that relay information to the broader network. This information could be financial, such as the transfer of $x$ nite from one non-autonomous account to another, or something else entirely, such as an manual participation transaction indicating which public addresses an account wants to represent them as delegates. Transactions can be sent by both autonomous or non-autonomous accounts; a non-autonomous account can send a transaction for the purpose of procuring some good or service, and an autonomous account can send another transaction for change, paid back to the original non-autonomous account. There are two main types of transactions: regular transactions, and application transactions. Regular transactions are the primary form of transactions; the example given above is a type of regular transaction. Application transactions are used to create an autonomous account (a chain-based smart contract), and are primarily sent by non-autonomous accounts (humans), although there is no physical or computational limitation that prevents one contract from creating another contract within its own predefined logical or procedural framework. Transactions in Adamnite have minimal fees due to corresponding minimal computational power required to validate them. This fee is measured in ate, which simply another denomination of the nite subdenomination micalli. We define 1 ate = 1 micalli $* 10^7$
+ Regardless, all transactions have similar parameters:
+\begin{description}
+\item[\textbf{type:}] The type of transaction: an application-creation transaction or just a regular transaction. Formally defined as $T_y$.
+\item[\textbf{from:}] The 160-bit public address of the sender of the transaction; can belong to any type of account. Formally defined as $T_t$.
+\item[\textbf{amount:}]\hspace{10}  The total amount, in Micalli, to be transferred in the transaction from the sender to the receiver. Formally defined as $T_a$
+\item[\textbf{receiver:}]\hspace{10} The 160-bit public address of the recipient of the transaction; can belong to any type of account. This address receives both the amount of currency and any external data. Formally defined as $T_r$.
+
+\item[\textbf{message:}]\hspace{10}  The message is simply any data, encoded as a general byte array, that accompanies the transaction. This can be underlying operational code, or storage data pointing to the recipients underlying storage. Formally defined as $T_m$.
+
+\item[\textbf{fee:}] The value, in ate, that the sender of transaction is filling to pay for the transaction. Most client-side implementations and on-chain wallets will automatically calculate this value based on the computational size of the transaction. Formally defined as $T_f$.
+
+\item[\textbf{r, s:}] r and s are cryptographic values derived from the Elliptic Curve used to sign transactions. This is discussed in more detail in subsection D of this section. Formally defined as $T_0$ and $T_1$.
+
+
+
+\end{description}
+
+To sign transactions, a combination of the SHA-512 Hash (from the SHA-3 Family) and the Secp256k1 curve order (from the broader category of elliptic curves) is used to generate a secure and recoverable signature derived from the sender's private key. This implementation is similar to the process described by Wood in Appendix F of Ethereum's Yellow Paper, and thus draws heavily from the general implementation described by Gura. \cite{guraSECP256k1}
+
+We assume that the sender has a valid secret key $P_s$, which is a randomly selected unsigned integer from a source of relative entropy in the range of $[1, Secp256k1n -1]$ of size 32. The derivation and recovery curve functions are essentially the same as Ethereum's: the ECDSA Functions ECDSASIGN (SIGN) and ECDSARECOVER (RECOVER) are used to sign transactions and recover the public key associated with the signature, respectively. To generate the public key $P_p$, a combination of the hashing functions SHA-512 and RIPMED-160 are used, defined formally as $H_a$ and $H_b$ respectively, along with the function ECDSAPUBKEY (PUBLIC). It can be assumed that all intermediate values are 32-byte unless specified otherwise. A formal description follows:
+\begin{eqnarray}
+\mathtt{PUBLIC}(p_{\mathrm{s}}) & \equiv & p_{\mathrm{p}} \in \mathbb{B}_{64} \\
+\mathtt{SIGN}(e,p_{\mathrm{s}}) & \equiv & (\mathrm{v} \in \mathbb{B}_{1}, r, s)\\
+\mathtt{RECOVER} (e, v, r, s) & \equiv & p_{\mathrm{p}}
+\in \mathbb{B}_{64}
+\end{eqnarray}
+
+ Here, $p_a$, the public address, is derived by hashing the value $p_p$ twice, first by SHA-512 and then by RIPEMD-160. This address is then encoded by a common encoding protocol such as BECH-32 to generate the public address that is seen in one's wallet or account.
+
+ The information that is actually mapped by the SIGN Function (e) is simply a hash of the transaction values, excluding the ECDSA signature values $r$ and $s$. These values are truncated (the first half is used), and then hashed with the hash function $h_a$:
+\begin{equation}
+A(p_{\mathrm{r}}) = \mathcal{B}_{0..256}\big(\mathtt{h_a}\big( \mathtt{PUBLIC}(p_{\mathrm{s}}) \big) \big)
+\end{equation}
+
+\subsection {Blocks}
+Blocks in Adamnite are simply a collection of all the transactions within a particular framework, along with relevant information relating to consensus. A block comprises of the block header $U$, which contains identifying information about the block itself, the transaction list $T$, which contains relevant information of all the transactions that in the block, and a witness list $W$, which contains information about the pool of witnesses chosen to act as validators for this particular block. The block header $U$ contains:
+
+\begin{description}
+\item[\textbf{Previous Hash:}]\hspace{40} The SHA-512 hash of the previous block in the timestamp chain. Formally, $U_p$.
+\item[\textbf{Timestamp:}]\hspace{30} An unsigned scalar value that equals the UNIX time of this block's creation. Formally, $U_t$.
+\item[\textbf{Witness:}]\hspace{10} The public bit-address of the validator who proposed the block, defined as $U_w$. This address is also the recipient of all the transaction fees associated with the block.
+\item[\textbf{Net Fee:}]\hspace{10}: An unsigned integer representing the total sum of the fees for all the transactions included in the block, formally defined as $U_f$.
+\item[\textbf{Storage Size:}]\hspace{30}  An unsigned integer representing the total bytes of storage and data in the block, formally defined as $U_s$.
+\item[\textbf{Nonce:}]\hspace{5} An unsigned integer representing the total amount of valid blocks that came before this block, starting from block 0. For example, a block with a nonce value of 5 will have 4 blocks: 0, 1, 2, 3, and 4, before it. Formally defined as $U_n$.
+\item[\textbf{Signature:}]\hspace{20} A cryptographic signature created through a common ring signature scheme that serves as a proof that the block was approved by the witnesses selected to serve as the validators for the block. Formally defined as $U_i$.
+\item[\textbf{Transaction Root:}]\hspace{50} The SHA-512 Hash of the root of the trie structure containing all the transactions for this block. Formally defined as $U_r$.
+\item[\textbf{State Root:}]\hspace{20} The SHA-512 Hash of the root of the trie structure containing the state after all transitions and transaction changes have been applied. Formally defined as $U_m$.
+\item[\textbf{Signature:}]\hspace{20} A cryptographic signature created through a common ring signature scheme that serves as a proof that the block was approved by the witnesses selected to serve as the validators for the block. Formally defined as $U_o$.
+\end{description}
+
+The block header $U$ is combined with the transaction list $T$ and the witness list $W$ to generate a valid block. We can thus define a valid block by referring to the following tuple:
+
+\begin{equation}
+{B} = (B_{u}, B_{t}, B_{w})
+\end{equation}
+
+A block's validity is inherently dependent on the values contained within it, and standard logic. The state as dictated through the underlying transactions must be consistent; for example, a party $P$ should not be double spending the same unit of currency twice. Essentially, transitions to the base state made throughout the serial execution of each transactions in the block must be consistent within the rules of the protocol. As described in equation 1, the underlying state is defined as $\sigma$, and transitions to $\sigma$ are defined through the transactions contained in blocks. Throughout a block's execution, the changes made to the state as a result of each transaction must also be consistent with another.
+Rather than specifying a serialization function, we assume the existence of a black-box function SERIAL that serializes objects, including blocks and transactions, native to Adamnite's protocol to a common byte format that can be understood by computers interacting with each other in the context of the Adamnite Protocol. SERIAL thus represents a common function whose output can be understood by all participants interacting with the Adamnite Protocol. Thus, we define the preparation functions for both the block header U and the block B in the context of SERIAL:
+
+\begin{eqnarray}
+{L_{H} = SERIAL((B_p,B_t,B_w,B_f,B_s,B_n,B_i,B_m,B_o))}\\
+{L_{B}} = SERIAL(B_{u},B_{t},B_{w})
+\end{eqnarray}
+
+
+Thus, SERIAL can be considered to be the canonical method of translating block information (headers, transaction lists, and witness lists) into a consistent byte format that should be understood by different computer clients within the protocol, and provides a method for translating block and transaction information to a byte format that can be easily transferred via a P2P protocol.
+
+
+\subsection{Transaction Fees}
+
+As with Ethereum, transaction fees on Adamnite are used as a deterrent to network abuse, specifically when one party interacting with the protocol takes advantages of its decentralized nature to continuously execute computational operations. These fees have their own dedicated subunit: ate. Any operation on the Adamnite network, from sending transactions to creating a new on-chain contact, is associated with a specific and universal fee paid in ATE as soon as the operation executes.\\
+Certain computational structures (such as a smart contract that continuously executes the SHA-256 hash function to cryptographically secure some arbitrary data) will be more expensive than others (a simple transaction sending $k$ Nite to another account). As with other smart contract platforms, fees are ultimately a submarket of their own: participants can specify the fee they want to pay for the execution of their transaction, but a lower than average fee may result in their transaction taking longer to execute than similar transactions that have specified a higher fee. It is worth noting that due to Adamnite's consensus model allows for fees to be significantly lower than legacy Proof of Work systems such as Bitcoin.\\
+Another difference in Adamnite's fee model is the inclusion of a minimum fee for average transaction: $t_f$ This fee is meant to represent the normative fee that guarantees a transaction will be accepted by the network, assuming average congestions. A sender can increase this transaction fee for a time intensive transaction, such as a transaction  that is time-intensive (an example will be a transaction containing the solution to some computational problem with $x$ difficulty sent to a smart contract that automatically rewards the first sender that sends a transaction with the solution). However, for normal on-chain transactions, the average fee should guarantee acceptance within a reasonable time.
+
+\subsection{DPOS Consensus Mechanism}
+
+
+Adamnite's consensus mechanism follows a typical DPOS scheme, as discussed earlier. From that perspective, the Adamnite network can be described as a specification of a cryptographic peer to peer participatory democracy, where one's ownership stake in the network directly determines their ability to influnce who the validators for the next round of blocks will be. The election process is used to add validity to the blockchain itself: it represents that the current canonical chain was created by and approved by nodes chosen by the broader network. There is also an incentive for nodes to be chosen as validators: block proposers are rewarded for proposing blocks, which acts as both an incentive for current validators to act honestly for the benefit for the network and for regular nodes to attempt to become validators in the future. Both block proposal and block validation is ultimately in the hands of these democratically elected validators, making Adamnite potentially more efficient than Proof of Work and most Proof of Stake alternatives.
+
+As such, it is extremely important that the DPOS process is secure and ensures that the compromise or malicious behavior of a single validator does not result in the failure of the entire network. Furthermore, the Adamnite network should prioritize decentralization, with any individual that has the minimal hardware requirements to participate in the peer to peer network being eligible to potentially become a validator.
+
+One of the most attractive propositions of the DPOS system, its democratic nature, is also the reason for its largest drawbacks. A decentralized system relying on a DPOS consensus mechanism suffers from the same diseases as physical governments relying on Democratic elections: corruption and bribery. Just as malicious politicians gain an unfair advantage by corrupting the entities that handle elections and holding power over individuals with significant wealth, malicious nodes bribe would be voters and form cartels that allow them to fully control the consensus process. This could result in the approval of incorrect blocks that provide an unfair benefit to the current validators, or certain transactions being excluded entirely to either again provide a benefit to the current validators or harm accounts that belong to individuals that the validators consider to be an enemy. Centralization also becomes an issue; a situation in which consensus is ultimately controlled by a small group of individuals who own a significant portion of the network (regardless of whether they are malicious or not) to form an infallible group that constantly retains control of the consensus process. Not only is this ultimately a semi-centralized system (one's chances of becoming a validator is innately tied to their economic power, although to a degree less than traditional staking systems). Thus, it is important for any system that uses DPOS to take precautions to ensure that it continues to enjoy the efficiencies associated with traditional DPOS while not suffering from the same pitfalls.
+
+
+While a significant part of a potential solution is simply concentrated in the underlying tokenomics (the distribution and allocation of the native token of the platform) and is thus out of the scope of this paper, we propose a technical solution within the consensus process itself. Consensus in Adamnite is actually a variation of traditional DPOS, using randomness and a reputation-based staking algorithm to protect against centralization and malicious validators respectively. This variation of DPOS is described in detail below.\\
+
+We define a voting process $V$. $V$ is simply a period of time in which network participants can vote upon new validators, and is formally defined as a function that maps the amount of votes each candidate got to their public key for that specific voting period. Every account that has at least one micalli can participate in this process, needing only to possess a client that is directly interacting with the underlying peer to peer network to be able to convey their decision to the other nodes. We also define $K$, a black-box verifiable random function (VRF) that takes as its input a group of participants and an unlimited amount of tuples containing various variables and their weights. The specification of $K$ is not important; any VRF that can be used to select $n$ out of $m$, where $n$ is a constant and $m$ is variable, and that can take in multiple variables as weights, can be used.  At the end of the voting process, validators are selected through an iterative random process that is weighed by several different variables. 
+
+\begin{eqnarray}
+G = V((x0,m0),(x1,m1),(x2,m2)...(xn,mn))\\
+A = Q(G)\\
+B = K(A, (m0,m1,m2,...mn), (w0,w1,w2,...wn))
+\end{eqnarray}
+
+$G$ is a tuple containing tuples that describe the public key and votes allocated to each candidate at the conclusion of the voting process. Again, $V$ transforms the public keys and votes received for each candidate into a "tuple of tuples", $G$, that stores this information in an efficient manner. $A$ is the first voting pool, and is simply the top $Q$ percentile of $G$ as determined by the amount of votes that were allocated to each candidate. Finally, $B$ is the pool of validators selected for the current round. The size of $B$ should be a constant number, and should be able changed only through an on-chain fork. $K$ is the verifiable random function that selects the candidates, weighed by the amount of votes they received and their reputation, an algorithmic representation of a node's behavior when they have previously served as validators. Actions that can impact a validator's reputation include inactivity or proposing an invalid block.
+
+\subsubsection{RepuStake}
+The specific reputation-based algorithm used by Adamnite is called RepuStake, first defined by the author of this work in late 2021 \cite{Chaudhury2021Reputsake}. It provides a basis for using reputation as a weight when selecting validators in a DPOS consensus system, and defines algorithmically how a reputation score may be calculated for an elected node. This algorithm is slightly modified for Adamnite as it focuses only on validators/witnesses, not regular nodes. Reputation-based staking systems were also discovered previously and independently by Hu \cite{Hu2020ImprovedDPOS}, among others. A brief description of this algorithm follows:\\
+There exists a tree $L$ which stores the account information (balance, public address, nonce, etc) for all the accounts in the network. Among this information, a boolean value "Validator" exists. This value is true if the account has previously served as a validator, and false otherwise. If the account has previously served as a validator, an additional parameter, reputation ($R$), is added to $L$. Reputation is a score between 0-1 assigned to the account, and is mutable whenever an account is selected to be a validator for a particular round. Proposing a correct block, for example, may increase a validator's reputation score by 0.1, while signing or proposing an invalid block decreases their score by 0.5, and being inactive decreases their score by 0.1. The specific amounts are not important; a valid RepuStake implementation must only have a large requirement to become trustworthy, and severely penalize behavior by untrustworthy nodes.\\
+
+This algorithm is still under development, and will likely change over time as the Adamnite Protocol continues to become more formalized. Furthermore, reputation can also be used in contexts beyond the core Adamnite implementation, such as in clients or wallets that allow users to passively participate in consensus (and thus earn staking rewards) by simply dedicating their stake to candidates with high reputation scores.
+
+\subsubsection{Block Execution}
+
+The execution of a block, or the process by which a block is proposed and approved by the network, is perhaps the most critical part of the consensus protocol. The DPOS consensus mechanism ultimately serves to dictate an efficient and secure process through which a canonical chain (the one approved continuously by all elected validators since the first, or genesis, block) can be defined. This process is actually quite simple, and is described below in conjunction with a function $\mathtt{DPOS}$, which describes the process through which a block is proposed and added to the canonical chain:
+\begin{equation}
+    m = {K_1(B)} \quad \wedge \quad n \ge \frac{2}{3} \quad
+\text{with} \quad (m,n) = \mathtt{DPOS}(H_b,H_x,d) \end{equation}
+
+Here, $K_1$ is a VRF that is capable of simply picking one item from a list. $K_1$ can be completely identical to $K$, although it does not have to be and can also come from a different family of VRFs entirely. $K_1$ is used to randomly pick a block proposer for the next $i$ blocks, where $i$ is again some constant that can only be changed through a fork, and when multiplied by the total size of B, results in $blank$, the number of blocks in a round.//
+It can be assumed that each elected validator is given a validator private key used for signing blocks to signal their approval, or if they are a proposer, signal that they are the ones who proposed the block. This private key can only be used in the context of the round, and once a new group of validators is elected, a new set of validator private keys is issued. For the purpose of block proposal, we leverage a generalized ring signature algorithm $H_x$ that allows the block proposer $m$ to propose the block with their signature without having to expose their identity. Block validators can confirm that the block proposer was indeed among the current group of chosen validators, but will be unable to discern the exact identity of the block proposer. This serves two purposes: validators are encouraged to validate blocks based on their correctness rather than the identity of the individual who proposed the block, thus further combatting corruption and discouraging the development of cartels within the broader network of potential validators, and malicious attackers are unable to determine the identity of the proposer $m$ for the current sub-round $i$, thus protecting the network against DDOS attacks that target a specific validator. 
+Once a block has been proposed, validators take turns appending their signatures to the block to signal their approval. $n$ is simply the ratio of approvals to the total number of validators, and must be at least 2/3 in order for a block to be appended to the current canonical chain. In the case of a fork (where at least 2/3 of validators cannot come to an agreement, although this is unlikely because of both reputation and block rewards), consensus continues on the current longest chain, thus following one of the core principles of Nakamoto Consensus.  Finally, $d$ in the equation above is simply the associated block data.
+
+\section{Programming Environment}
+
+We now move to a formal discussion of Adamnite's programming environment and execution process. At its core, Adamnite is a platform meant to allow for the efficient creation of multiparty smart contracts that are executed and stored entirely on a distributed ledger. The programming environment includes all the components needed to achieve this principle: an easy to use modular programming language, a semi-Turing complete stack-based virtual state machine, and a smart contract creation and message execution model. We leave the specification of the contract creation and message execution up to the developer; one can assume that it is essentially the same as other multiparty smart contract development platforms such as Ethereum or Solana. We now provide a formal definition of Adamnite's programming stack, $A1$, and a description of its virtual state machine. 
+
+\subsection{Programming Language and Execution}
+A1 is Adamnite's high level programming language, and also serves as the basis for its high-level programming environment. A1 itself is an adoption of the functional programming model employed by Haskell and other popular programming languages used in third generation blockchains. However, in practice, A1 is more of a generalized functional language: the creation of functions and modules enables programmers to package reusable code that can be used by others, thus creating a programming ecosystem in which vetted modules of code are leveraged for both security and ease of use. Functional programming has been described in length by Hughes \cite{hughesFunctional}, among others. A1's structure and script are heavily inspired by E, a generalized contract-programming language that allowed developers to create smart contracts in a secure distributed computing framework. A1 can be thought of a modern implementation of a distributed message-oriented programming language with an emphasis on readability. A1 is dynamically-typed; types do need to be explicitly declared, and are only defined at runtime. A1's syntax is also extremely similar to that of Python's, thus allowing any developer familiar with writing programs in Python to easily use A1 to write powerful smart contracts.  \\
+
+A1, at its core, is a sequential object-oriented language. Developers write programs through multiple contracts, which themselves are defined by other contracts. This process continues until the most basic scripts are reached: these axiomatic scripts form the basis for which more complex objects are designed and executed. A1 borrows heavily from E, a smart contract language originally described by \cite{miller1997E}. E allowed developers to write functional Turing-Complete scripts in an object-message framework, and allowed those contracts to function in a distributed manner in the presence of mutually suspicious parties. For A1, this is extended to create multiparty smart contracts that function entirely on a distributed ledger, where all parties interacting with the distributed ledger are considered to be adversarial. This is a marked improvement over current implementations of current multi-party smart contract programming systems,  which often leave much to be desired from both a security and functional perspective. Even the slightest error results in an adversarial party being able to access  private information, or manipulate the smart contract in a way that should not be allowed by the average participant. Furthermore, most modern smart contract programming languages are almost impossible to use for the average individual who interacts with contracts on a daily basis, thus being a far cry from the contract languages originally envisioned by Szabo. In A1, scripting is simplified. Programs are executed through an object-oriented framework, and contracts are able to be inline into other contracts, allowing for an efficient development platform that allows developers to utilize other contracts to create their own contracts, much like how standard forms are used in the legal industry.\\
+
+A1 corrects this by providing an easy-to-use script that is inherently readable, supports the use of data feeds and external APIs, and is modular, allowing for the use of packages and standards that can drive the creation of complex contracts. This standard library in particular will serve to make the development of contracts easier, and will also protect developers from making rudimentary errors that can compromise their contract. 
+
+
+\subsection{Virtual Machine and Message Execution}
+The message execution model presents a framework through which alterations to Adamnite's canonical state are made in the context of contract execution. Contract execution within the Adamnite protocol means the serial execution of bytecode instructions along with the processing of data external to the contract itself (if needed). To accomplish this, we specify a formal stack-based virtual machine: the Adamnite Virtual Machine (ADVM). The ADVM, like the EVM and other common implementations of distributed virtual machines, is \emph{quasi} Turing Complete because of the practical bound on net computation imposed by transaction fees. 
+\subsubsection{Virtual Machine}
+The ADVM is inherently simple: it is a stack-based virtual machine with a word (and stack size) of 256 bits. This, as with Ethereum, is done to efficiently enable computations based on the secp256k1 elliptic-curve. However, one key difference with the ADVM is that support of 32 and 64 bits is added through specific opcodes, thus allowing developers to perform computations using these sizes. The technical specification of the ADVM is similar to the EVM and other distributed virtual machines: memory exists as a separate byte-array, and an independent storage model is defined in the form of a word-array. The VM itself is stored in a virtual ROM, and is distributed among all the active nodes within the Adamnite network. The ADVM also supports exceptional execution; examples include stack overflows, incoherent instructions, or a simple lack of fees from the executor of the message. As with the EVM, any exception results in all state changes being voided, and the error is reported to the message executor. Fees follow the traditional paradigm established by Ethereum: the execution of a computational operation, the usage of an external contract or internal message call, and the allocation of memory or storage all result in ATE being deducted from the account that created the message call. 
+
+\subsubsection{Execution}
+The execution model itself determines an output, a new canonical state, and an intermediate state based on the computations executed upon the inputs. The other variables provided by the execution agent are typical; we forgo explaining these in a formal context for brevity. Rather, we define a execution function $\Xi$ that computes these outputs:
+\begin{equation}
+(\boldsymbol{\sigma}', t', I', \mathbf{O}) \equiv \Xi(\boldsymbol{\sigma}, t, I, IN)
+\end{equation}
+
+Here, as in Ethereum's execution function, computation on the state, transaction fee, and intermediate state results in a new output. The intermediate state $I$ is essentially the same as Ethereum's substate. Individual operations, defined as opcodes, are executed using this function until the entirety of the message is computed, or an exception that results in the execution halting is reached. The execution of a message can only be halted through an exception if the caller lacks the ATE needed to process the execution of all the operations within the message, if the execution of the message results in a stack overflow, or a similar error, as noted previously. Individual operations, barring any other errors, can never result in the machine halting.\\
+
+\subsubsection{Contract Creation and Calling}\\
+Within Adamnite's protocol, contracts are created through an application transaction, similar to the framework employed by Algorand. The creation of a contract is essentially the creation of an autonomous account that dictates interactions between multiple parties. We use the terms autonomous account and  A simple exchange contract, for example, could dictate the exchange of two assets: an external party (represented by a manual account) will send some amount of one asset to the autonomous account and the autonomous account will automatically send an equal market value of the other asset back. The current exchange rate for the assets will be determined through the account's underlying ADVM code. If specified by the creator, this underlying code can actually be changed by the creator and other trusted parties, thus allowing for contracts to be updated. This does mean that some contracts do require a certain degree of trust in the creator; however, due to the readability of ADVM code, an interested party will easily be able to determine whether a contract has such a feature.\\
+
+Another unique feature for contracts created on the ADVM is their modularity (not to be confused with the functional libraries provided by the A1 programming language). Contracts can be split into subsections, which can then be individually loaded by other contracts if needed. This is similar to how contracts work in the legal industry; often, when one contract utilizes language or terminology from another contract, it often only leverages one specific section or case. We apply this to programs acting on the distributed ledger that function as autonomous contracts. When a smart contract on the Adamnite protocol calls another smart contract, it can call and load specific sections within that contract. This serves two purposes: first, it serves to make execution more efficient by diverging from the  top-down execution model used by the EVM (originally described by Pilmore in an article describing the Pact smart contract programming language \cite{pilmore2019EVM}), and second, it protects contracts from external contract calls that might be malicious, even if a subsection within it is useful. 
+
+
+\section{Looking Ahead and Conclusion}
+We now look ahead and provide potential directions for how the Adamnite project could expand. It is worth noting that the current work is a working paper, and will likely change as the protocol evolves. In particular, the section on the programming environment will likely evolve as A1 itself becomes more formalized and further research concerning the implementation of the ADVM is done. Furthermore, an expansive appendix that further formalizes the details included in this work will also be included, and example programs and diagrams depicting how A1 works will likely be included in a future release of this work. However, despite the potential mutability of this work, we maintain that the core principle of an efficient and easy to use multiparty smart contract development platform will remain the same throughout the development of both this work and the Adamnite platform. 
+
+\subsection{Scalability Plans}
+One of the core tenets of the Adamnite project is the idea of a simplified distributed ledger platform; this definition goes beyond just the programming environment used to create on-chain applications and contracts. The process for individuals to download nodes to validate the ledger should also be a simple process, and be open to any individual with access to the internet. Current blockchains are often too large, and require specialized hardware for node validation. A solution to this problem exists in the form of the succinct blockchain established by Bonneau, Meckler, Rao, and Shapiro in their technical paper describing the Mina Blockchain \cite{bonneau2020Mina}. Succinct blockchains leverage zero knowledge proofs to minimize the information needed to verify the blockchain; a node only needs to validate the latest block in order to verify the entire chain. Adamnite can leverage zero knowledge proofs either in its core protocol or via a subchain to make validating on-chain transactions more accessible to the average network participant.\\
+One of Adamnite's core features that was not discussed at length was the formal verification that will be a direct part of A1. Formal verification allows for contract developers to declare assertions and dynamically check their code for common errors; an extension of this is knowledge verification, which allows for developers to define how various parties may interact with the contract. This will be explained in more detail once A1 is more formalized.
+
+\subsection{Conclusion}
+We have formally defined Adamnite, an efficient distributed ledger and easy to use multiparty smart contract development platform. Adamnite allows developers, regardless of their prior experience with blockchain technologies, to easily create autonomous contracts and applications that are independent from any centralized power and are entirely autonomous. Further changes to this work and the Adamnite protocol will be made to accomplish the core goals of the Adamnite protocol. 
+\section{Acknowledgements}
+This work would not have been possible without the contributions of my co-founders at Adamnite Labs: Thomas Petersen, Khalil Shanti, and Brent Gillett. Without them, the Adamnite project itself would have likely died out months ago. Special thanks also goes to Adamnite's open-source contributors, namely Marcos Gomez, Nishan Mahajaran, and Dibek Pouydal. They have all, at one point or another, helped formulate my theoretical ideas into actual software. Finally, a special shout out to Tsimafei for helping me greatly with protocol research, leading the development of the core blockchain, and of course keeping the spirit of anonymous open-source contribution alive. 
+
+
+
+
+
+\begin{thebibliography}{00}
+\bibitem{chaudhury2021Adamnite} A. Chaudhury, ``Adamnite: A scalable and secure
+blockchain development platform'', December 2021.
+\bibitem{nakamoto2008Bitcoin} S. Nakamoto, ``Bitcoin: A Peer-to-Peer Electronic Cash System'', 2008.
+\bibitem{back2002hashcash} A. Back, ``Hashcash - A Denial of Service Counter-Measure,'', August 2002.
+\bibitem{dai1998money} W. Dai, ``BMoney,'' 1998.
+\bibitem{buterin2013Ethereum} V Buterin, ``Ethereum: A Next-Generation Smart
+Contract and Decentralized Application Platform'',
+2013.
+\bibitem{wood2014EthereumYellow} G. Wood, ``ETHEREUM: A SECURE DECENTRALISED GENERALISED TRANSACTION LEDGER'', 2014.
+\bibitem{Yakovenko} A. Yakovenko, ``Solana: A new architecture for a high
+performance blockchain'', 2017.
+\bibitem{micalli2017Algorand} S. Micalli, J. Chen, ``ALGORAND'' 2017.
+\bibitem{szaboContract} N. Szabo, ``A Formal Language for Analyzing Contracts'' 2002.
+\bibitem{Larmier2014DPOS} D. Larmier, ``Delegated Proof-of-Stake (DPOS)'' 2014.
+\bibitem{guraSECP256k1} N. Gura, A. Patel, A. Wander, H. Eberle,
+and S. C. Shantz. Comparing elliptic curve
+cryptography and RSA on 8-bit CPUs. In Cryptographic
+Hardware and Embedded Systems-CHES 2004, pages
+119–132. Springer, 2004.
+\bibitem{chaudhury2021RepuStake} A. Chaudhury, ``RepuStake'' 2021.
+\bibitem{Hu2020ImprovedDPOS} Q. Hu, ``An Improved Delegated Proof of Stake Consensus Algorithm'' 2021.
+\bibitem{hughesFunctional} J. Hughes, ``Why
+Functional Programming
+Matters'' 1990.
+\bibitem{miller1997E} M. Miller, ``Towards a Unified Approach to Access Control and Concurrency Controls'' 2006.
+\bibitem{pilmore2019EVM} E. Pilmore, ``The EVM Is Fundamentally Unsafe'' 2019.
+\bibitem{bonneau2020Mina} J. Bonneau, I. Meckle, V Rao
+ E. Shapiro, ``Mina: Decentralized Cryptocurrency at Scale'' 2020.
+
+
+
+
+\end{thebibliography}
+
+\end{document}
